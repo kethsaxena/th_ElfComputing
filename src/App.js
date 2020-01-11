@@ -50,9 +50,12 @@ class App extends Component {
 
   render() {
     
-      const features = Object.keys(this.props.features).map(<Rad></Rad>);//map above
+      const features = Object.keys(this.props.features)
+      .map((key,index)=><Rad features={this.props.features} updateFeature={this.updateFeature}  state={this.state} feature={key} idx={index}></Rad>);
+      //map above
 
-      const summary = Object.keys(this.state.selected).map(<Sum></Sum>);//map
+      const summary = Object.keys(this.state.selected)
+      .map((key,index)=><Sum selectOption={this.state.selected}  feature={key} idx={index}></Sum>);//map
 
       const total = Object.keys(this.state.selected).reduce(
         (acc, curr) => acc + this.state.selected[curr].cost,

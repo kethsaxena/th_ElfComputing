@@ -8,9 +8,11 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   });
   
 
-const rad = (feature, idx) => {
+const rad = (props) => {
+        const feature =props.feature
+        const idx =props.idx
         const featureHash = feature + '-' + idx;
-        const options = this.props.features[feature].map(
+        const options = props.features[feature].map(
     
           item => {
             const itemHash = slugify(JSON.stringify(item));
@@ -21,8 +23,8 @@ const rad = (feature, idx) => {
                   id={itemHash}
                   className="feature__option"
                   name={slugify(feature)}
-                  checked={item.name === this.state.selected[feature].name}
-                  onChange={e => this.updateFeature(feature, item)}
+                  checked={item.name === props.state.selected[feature].name}
+                  onChange={e => props.updateFeature(feature, item)}
                 />
                 <label htmlFor={itemHash} className="feature__label">
                   {item.name} ({USCurrencyFormat.format(item.cost)})

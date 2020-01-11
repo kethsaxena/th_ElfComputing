@@ -5,9 +5,11 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
     currency: 'USD'
   });
   
-const sum  =(feature, idx) => {
+const sum  =(props) => {
+    const feature =props.feature
+    const idx =props.idx
     const featureHash = feature + '-' + idx;
-    const selectedOption = this.state.selected[feature];
+    const selectedOption = props.selectOption[feature];
     
 
     return (
@@ -15,7 +17,7 @@ const sum  =(feature, idx) => {
         <div className="summary__option__label">{feature} </div>
         <div className="summary__option__value">{selectedOption.name}</div>
         <div className="summary__option__cost">
-          {USCurrencyFormat.format(selectedOption.cost)}
+        {USCurrencyFormat.format(selectedOption.cost)}
         </div>
       </div>
     );
